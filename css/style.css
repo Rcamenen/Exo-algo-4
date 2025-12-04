@@ -92,20 +92,31 @@ ol { margin-bottom: 15px; }
     margin-bottom: 2px;
     margin-top: 0px;
 }
-.formulaire input, 
 .formulaire select, 
 .formulaire button {
     margin-top: 0;
     line-height: 24px;
     padding: 6px 10px;
+    width: fit-content;
 
+}
+.formulaire input{
+    padding: 8px 16px;
 }
 .formulaire {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 32px;
     align-items: center;
     border: 1px solid rgba(4, 41, 186, 0.482);
     border-radius: .25rem;
     padding: 10px;
     margin-top: 15px;
+}
+
+#field1, #field2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }

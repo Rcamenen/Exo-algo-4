@@ -9,4 +9,15 @@ class Eleve {
             javascript: []
         };
     }
+    average = (subject) => {
+        if(subject == undefined){
+            console.log("undefined");
+        }
+        let sum=0;
+        let notes = this.notes[subject];
+        notes.forEach(note => {
+            sum+=note;
+        });
+        return sum/this.notes[subject].length;
+    }
 }

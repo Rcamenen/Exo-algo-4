@@ -69,51 +69,136 @@
 <script type="text/javascript">
 
     let groupeEleves = [];
+
     
     // -----------------------------------------------------
     /*
-     * --- Courte description de la fonction ICI ---
-     * Paramètres : --- paramètres ICI si il y en a ---
+     * generateNote() génère une note en 0 et 20
+     * de manière aléatoire
+     * Paramètres : Elle ne prend aucun paramètre
      *  
-     * Retour : --- retour de la fonction ICI ---
+     * Retour : Elle retourne un Integer entre 0 et 20 inclus
      */
 
     function genererNote () { 
-        // CODE HERE
+        let note = Math.round(getRandom(20));
+        return note;
+    }
 
+     /*
+     * getRandom(max) génère un chiffre en 0 et max
+     * de manière aléatoire
+     * Paramètres : un entier qui sera le max du nombre généré aléatoirement
+     *  
+     * Retour : Elle retourne un float entre 0 et max
+     */
+
+    function getRandom(max){
+        return Math.random()*max;
+    }
+
+     /*
+     * addRandomNote(eleves,subject) ajoute une note aléatoire à tous les élèves
+     * de manière aléatoire
+     * Paramètres : un Array d'objet et la matière à laquelle affecter la note
+     *  
+     * Retour : Elle retourne le tableau des élèves avec les notes ajoutées
+     */
+    function addRandomNote(eleves,subject){
+        eleves.forEach(eleve => {
+            eleve.notes[subject].push(genererNote())
+            });
+        return eleves;
+    }
+
+    /*
+    * getNotes(...) récupère les notes de tous les élèves dans une matière donnée
+    * Paramètres : un tableau d'objet des élèves
+    *  
+    * Retour : Retourne un Array des notes demandées
+    */
+    function getNotes(eleves,subject){
+        let notes = [];
+
+        eleves.forEach(eleve => {
+            let notesEleve = eleve.notes[subject]
+            
+            notesEleve.forEach(note => {
+                console.log(`Ajout de la note de ${eleve.name}, la note en ${subject} est de ${note}`)
+                notes.push(note);
+                });
+
+            });
+        
+        return notes;
+    }
+
+    /*
+    * getAverage(...) calcule une moyenne
+    * Paramètres : un tableau de Number
+    *  
+    * Retour : Retourne un Number 
+    */
+
+    function getAverage(notes){
+        let sum = 0;
+        notes.forEach(note => {
+            sum+=note;
+        })
+        return sum/notes.length;
     }
 
 
+    /*
+    *getSum renvoi la somme des nombres d'un tableau
+    *PARAMETRES : Un array de number
+    * 
+    * */
+    function getSum(values){
+        let sum = 0;
+        values.forEach(value => {
+            sum+=value;
+        });
+        return sum;
+    }
     // -----------------------------------------------------
 
     // création des 3 élèves et rangement dans le tableau des élèves
     
+    let pierreDupont = new Eleve("DUPONT","Pierre","Kercode");
+    let marieFontaine = new Eleve("FONTAINE","Marie","CDUI");
+    let johnHunter = new Eleve("HUNTER","John","CDA");
 
+    groupeEleves = [pierreDupont,marieFontaine,johnHunter];
 
     // lecture et affichage du prénom de l'objet pierreDupont
     
-
+    console.log(`Le nome de Pierre est : ${pierreDupont.name}`);
 
     // lecture et affichage de la classe de marieFontaine
     
-
+    console.log(`La classe de Marie Fontaine est : ${marieFontaine.course}`);
 
     // attribution de notes en maths
-    
-
-
     // attribution des notes en mathématique (marieFontaine et pierreDupont)
+
+    marieFontaine.notes.maths.push(16);
+    pierreDupont.notes.maths.push(14);
+
     // attribution de la note de 18 à johnHunter
-    
+
+    johnHunter.notes.algorithmique.push(18);
 
 
     // ajout d'une note aléatoire en algorithmique pour chaque élève
-
-
+    
+    addRandomNote(groupeEleves,"algorithmique");
 
     // moyenne du groupe en algorithmique
-    
-    
+
+    let notes = getNotes(groupeEleves,"algorithmique")
+    console.log(`La moyenne des élèves en algo est de : ${getAverage(notes)}`);
+    console.log(groupeEleves);
 
 </script>
 </body>
