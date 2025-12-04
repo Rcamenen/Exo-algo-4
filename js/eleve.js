@@ -10,11 +10,22 @@ class Eleve {
         };
     }
     average = (subject) => {
-        if(subject == undefined){
-            console.log("undefined");
+        console.log("go");
+        let notes=[];
+        if(!subject){
+
+            for (const subject in this.notes) {
+                
+                notes.concat(this.notes[subject]);
+
+            }
+
+            notes.forEach(notes => {
+                
+            });
+            return true;
         }
-        let sum=0;
-        let notes = this.notes[subject];
+        notes = this.notes[subject];
         notes.forEach(note => {
             sum+=note;
         });
